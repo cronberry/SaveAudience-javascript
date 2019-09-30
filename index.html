@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<h1>Welcome !!...</h1>
+
+</head>
+<body>
+
+<form method="post">
+name : <input  id="name" type="text" , name=""></br>
+phoneNo : <input id = "phoneNo" type="text" , name=""></br>
+<button id="button" value="val" name="button">button</button>
+</form>
+
+<script type="text/javascript">
+$("button").click(function(e) {
+	e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "https://api.cronberry.com/cronberry/api/campaign/register-audience",
+        dataType: "json",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        data:JSON.stringify({
+            paramList: [
+                           {
+                               paramKey: "name",
+                               paramValue:$("#name").val()
+                           },
+                           {
+                        	   paramKey: "phone_no",
+                               paramValue:$("#phoneNo").val()
+                           }
+                       ],
+                       apiKey: "c2c0ODQxNEBnbWFpbC5jb20=",
+                       audienceId: new Date().getTime()
+        }),
+        success: function(data) {
+        	console.log("success");
+        },
+        error: function(data) {
+        	console.log("error");
+        }
+    });
+});
+</script> 
+
+</body>
+
+</html>
+
